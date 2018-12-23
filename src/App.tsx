@@ -1,6 +1,8 @@
 import * as React from 'react';
 import './App.css';
 
+import Rake from "./controller/Rake";
+import SentenceKeyword from "./controller/SentenceKeyword";
 import SentenceText from "./controller/SentenceText";
 import TextRank from "./controller/TextRank";
 import logo from './logo.svg';
@@ -21,6 +23,11 @@ class App extends React.Component {
             console.log(tr);
             console.log(tr.getRankedSummary(5));
             console.log(tr.getOriginalOrderSummary(5));
+
+            const sk = new SentenceKeyword(s);
+            const rk = new Rake(sk);
+
+            console.log(rk)
         } catch (err) {
             console.log(err);
         }

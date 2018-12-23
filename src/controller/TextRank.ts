@@ -1,7 +1,7 @@
 import * as math from "mathjs";
 import {Matrix} from "mathjs";
-import {IRank} from "./ITextRank";
-import SentenceText from "./SentenceText";
+import {IRank} from "./IRank";
+import SentenceAbstract from "./SentenceAbstract";
 
 const EPS = 0.00001;
 const DAMP = 0.60;
@@ -62,9 +62,9 @@ export default class TextRank {
     
     private readonly originalOrderRank: IRank[];
     private readonly sortedRank: IRank[];
-    private st: SentenceText;
+    private st: SentenceAbstract;
 
-    constructor(st: SentenceText) {
+    constructor(st: SentenceAbstract) {
         this.st = st;
         this.originalOrderRank = this.textRank();
         this.sortedRank = this.sortRank();
@@ -96,7 +96,7 @@ export default class TextRank {
     }
 
     private sortRank(): IRank[] {
-        const sorted: IRank[] = this.textRank();
+        const sorted: IRank[] = this.originalOrderRank;
 
         sorted.sort((a, b) => {
             if (a.rank > b.rank) {
@@ -114,10 +114,10 @@ export default class TextRank {
     private textRank() {
         const result: IRank[] = [];
         const ranks: number[] = TextRank.rankSentences(this.similarity_matrix());
-        const st = this.st.getSentenceTokens();
+        const st = this.st.getSentenceData();
         
         for (let i = 0; i < ranks.length; i++) {
-            const r: IRank = {rank: ranks[i], sentence: st[i].sentence, tokens: st[i].data};
+            const r: IRank = {rank: ranks[i], sentence: st[i].sentence, data: st[i].data};
             result.push(r);
         }
         
@@ -125,7 +125,7 @@ export default class TextRank {
     }
     
     private similarity_matrix(): any {
-        const tokens: string[][] = this.st.getTokens();
+        const tokens: string[][] = this.st.getData();
         const length: number = tokens.length;
         let matrix: any = math.zeros(length, length) as Matrix;
         matrix = matrix.toArray();
