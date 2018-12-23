@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dbb68c0-f615-444a-96ea-d00ab924384e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/RankAbstract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ISentenceText.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ISentenceAbstract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ITextRank.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/IRank.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/Rake.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Rake.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SentenceAbstract.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SentenceAbstract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SentenceKeyword.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SentenceKeyword.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SentenceText.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SentenceText.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RankAbstract.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RankAbstract.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/TextRank.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/TextRank.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -110,26 +104,26 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="82" />
-          <entry key="ts" value="5588" />
-          <entry key="tsx" value="94" />
+          <entry key="ts" value="5905" />
+          <entry key="tsx" value="133" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="82" />
-          <entry key="TypeScript" value="5588" />
-          <entry key="TypeScript JSX" value="94" />
+          <entry key="TypeScript" value="5905" />
+          <entry key="TypeScript JSX" value="133" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-248">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="419">
+              <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -140,7 +134,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/SentenceAbstract.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
+            <state relative-caret-position="-253">
               <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
             </state>
           </provider>
@@ -150,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/src/controller/SentenceText.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="437">
-              <caret line="25" column="66" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="66" />
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -173,8 +167,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/Rake.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+            <state relative-caret-position="2553">
+              <caret line="111" column="45" lean-forward="true" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -185,8 +179,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/TextRank.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="80" column="40" lean-forward="true" selection-end-line="149" selection-end-column="1" />
+            <state relative-caret-position="1633">
+              <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -194,10 +188,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/RankAbstract.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="322">
+              <caret line="41" column="39" lean-forward="true" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
               <folding>
                 <element signature="e#1#31#0" expanded="true" />
               </folding>
@@ -246,12 +241,12 @@
         <option value="$PROJECT_DIR$/src/controller/SentenceText.ts" />
         <option value="$PROJECT_DIR$/src/controller/ISentenceAbstract.ts" />
         <option value="$PROJECT_DIR$/src/controller/SentenceAbstract.ts" />
-        <option value="$PROJECT_DIR$/src/App.tsx" />
         <option value="$PROJECT_DIR$/src/controller/SentenceKeyword.ts" />
         <option value="$PROJECT_DIR$/src/controller/IRank.ts" />
+        <option value="$PROJECT_DIR$/src/controller/RankAbstract.ts" />
         <option value="$PROJECT_DIR$/src/controller/Rake.ts" />
         <option value="$PROJECT_DIR$/src/controller/TextRank.ts" />
-        <option value="$PROJECT_DIR$/src/controller/RankAbstract.ts" />
+        <option value="$PROJECT_DIR$/src/App.tsx" />
       </list>
     </option>
   </component>
@@ -363,12 +358,12 @@
       <workItem from="1545483275201" duration="8572000" />
       <workItem from="1545557969268" duration="6211000" />
       <workItem from="1545565171029" duration="4734000" />
-      <workItem from="1545593264974" duration="6859000" />
+      <workItem from="1545593264974" duration="7501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26376000" />
+    <option name="totallyTimeSpent" value="27018000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -504,35 +499,8 @@
     <entry file="file://$PROJECT_DIR$/images.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SentenceAbstract.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SentenceText.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="25" column="66" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-248">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ISentenceAbstract.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -548,6 +516,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SentenceText.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/SentenceKeyword.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -558,31 +536,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Rake.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/TextRank.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="80" column="40" lean-forward="true" selection-end-line="149" selection-end-column="1" />
+        <state relative-caret-position="1633">
+          <caret line="71" column="31" lean-forward="true" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Rake.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2553">
+          <caret line="111" column="45" lean-forward="true" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/RankAbstract.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="322">
+          <caret line="41" column="39" lean-forward="true" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
           <folding>
             <element signature="e#1#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SentenceAbstract.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="31" column="55" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

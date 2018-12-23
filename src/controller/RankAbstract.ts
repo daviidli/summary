@@ -6,8 +6,9 @@ export default abstract class RankAbstract {
     private readonly originalOrderRank: IRank[];
     private readonly sortedRank: IRank[];
 
-    constructor(sa: SentenceAbstract) {
+    protected constructor(sa: SentenceAbstract) {
         this.sa = sa;
+        this.initialize();
         this.originalOrderRank = this.rank();
         this.sortedRank = this.sortRank();
     }
@@ -37,6 +38,7 @@ export default abstract class RankAbstract {
         return result;
     }
 
+    protected abstract initialize(): void;
     protected abstract rank(): IRank[];
 
     private sortRank(): IRank[] {

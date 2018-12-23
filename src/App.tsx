@@ -27,7 +27,9 @@ class App extends React.Component {
             const sk = new SentenceKeyword(s);
             const rk = new Rake(sk);
 
-            console.log(rk)
+            console.log(rk);
+            console.log(rk.getRankedSummary(5));
+            console.log(rk.getOriginalOrderSummary(5));
         } catch (err) {
             console.log(err);
         }

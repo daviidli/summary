@@ -1,10 +1,11 @@
 import {Matrix} from "mathjs";
 import * as math from "mathjs";
 import {IRank} from "./IRank";
-import SentenceKeyword from "./SentenceKeyword";
 import {ISentenceData} from "./ISentenceAbstract";
+import RankAbstract from "./RankAbstract";
+import SentenceKeyword from "./SentenceKeyword";
 
-export default class Rake {
+export default class Rake extends RankAbstract {
     private static findAllCombinations(arr: string[]): string[][] {
         const combinations: string[][] = [];
 
@@ -17,26 +18,24 @@ export default class Rake {
         return combinations;
     }
 
-    private sk: SentenceKeyword;
-    private readonly keywordScores: Map<string, number>;
-    private readonly originalOrderRank: IRank[];
-    private readonly sortedRank: IRank[];
+    private keywordScores: Map<string, number>;
 
     constructor(sk: SentenceKeyword) {
-        this.sk = sk;
-        this.keywordScores = new Map<string, number>();
-        this.calculateKeywordScores(this.coOccurrenceGraph());
-        this.originalOrderRank = this.rake();
-        this.sortedRank = this.sortRank();
+        super(sk);
     }
 
-    public getOriginalOrderRank(): IRank[] {
-        return this.originalOrderRank;
+    protected initialize(): void {
+        this.keywordScores = new Map<string, number>();
+        this.calculateKeywordScores(this.coOccurrenceGraph());
+    }
+
+    protected rank(): IRank[] {
+        return this.rake();
     }
 
     private rake(): IRank[] {
         const result: IRank[] = [];
-        const sentenceKeywords: ISentenceData[] = this.sk.getSentenceData();
+        const sentenceKeywords: ISentenceData[] = this.sa.getSentenceData();
 
         for (const s of sentenceKeywords) {
             let sentenceScore: number = 0;
@@ -65,7 +64,7 @@ export default class Rake {
     }
     
     private coOccurrenceGraph(): number[][] {
-        const allKeywords: string[] = this.sk.getAllKeywords();
+        const allKeywords: string[] = (this.sa as SentenceKeyword).getAllKeywords();
 
         if (allKeywords.length === 0) {
             throw new Error("no keywords present");
@@ -73,7 +72,7 @@ export default class Rake {
         
         const graph: any = (math.zeros(allKeywords.length, allKeywords.length) as Matrix).toArray();
         
-        const sentenceKeywords = this.sk.getData();
+        const sentenceKeywords = this.sa.getData();
         for (const keywords of sentenceKeywords) {
             for (const keyword of keywords) {
                 // if keyword is made up of more than one word
@@ -104,34 +103,18 @@ export default class Rake {
     }
 
     private calculateKeywordScores(graph: number[][]): Map<string, number> {
-        const allWords = this.sk.getAllKeywords();
+        const allWords: string[] = (this.sa as SentenceKeyword).getAllKeywords();
 
         for (const word of allWords) {
-            const i = allWords.indexOf(word);
+            const i: number = allWords.indexOf(word);
 
-            const deg = math.sum(graph[i]);
-            const freq = graph[i][i];
-            const score = deg/freq;
+            const deg: number = math.sum(graph[i]);
+            const freq: number = graph[i][i];
+            const score: number = deg/freq;
 
             this.keywordScores.set(word, score);
         }
 
         return this.keywordScores;
     };
-
-    private sortRank(): IRank[] {
-        const sorted: IRank[] = this.originalOrderRank;
-
-        sorted.sort((a, b) => {
-            if (a.rank > b.rank) {
-                return -1;
-            }
-            if (a.rank < b.rank) {
-                return 1;
-            }
-            return 0;
-        });
-
-        return sorted;
-    }
 }
