@@ -42,7 +42,7 @@ export default abstract class RankAbstract {
     protected abstract rank(): IRank[];
 
     private sortRank(): IRank[] {
-        const sorted: IRank[] = this.originalOrderRank;
+        const sorted: IRank[] = this.originalOrderRank.slice();
 
         sorted.sort((a, b) => {
             if (a.rank > b.rank) {

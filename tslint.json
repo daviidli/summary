@@ -8,6 +8,10 @@
     ]
   },
   "rules": {
-    "no-console": false
+    "no-console": false,
+    "interface-name": false,
+    "object-literal-sort-keys": false,
+    "no-string-literal": false,
+    "no-conditional-assignment": false
   }
 }

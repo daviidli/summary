@@ -1,6 +1,7 @@
 import * as math from "mathjs";
 import {Matrix} from "mathjs";
 import {IRank} from "./IRank";
+import {ISentenceData} from "./ISentenceAbstract";
 import RankAbstract from "./RankAbstract";
 import SentenceText from "./SentenceText";
 
@@ -76,10 +77,14 @@ export default class TextRank extends RankAbstract {
     private textRank() {
         const result: IRank[] = [];
         const ranks: number[] = TextRank.rankSentences(this.similarity_matrix());
-        const st = this.sa.getSentenceData();
+        const st: ISentenceData[] = this.sa.getSentenceData();
+
+        const min: number = Math.min(...ranks);
+        const diff: number = Math.max(...ranks) - min;
         
         for (let i = 0; i < ranks.length; i++) {
-            const r: IRank = {rank: ranks[i], sentence: st[i].sentence, data: st[i].data};
+            const percentage: number = (ranks[i] - min) / diff;
+            const r: IRank = {rank: ranks[i], percentage, sentence: st[i].sentence, data: st[i].data};
             result.push(r);
         }
         
@@ -89,8 +94,7 @@ export default class TextRank extends RankAbstract {
     private similarity_matrix(): any {
         const tokens: string[][] = this.sa.getData();
         const length: number = tokens.length;
-        let matrix: any = math.zeros(length, length) as Matrix;
-        matrix = matrix.toArray();
+        const matrix: any = (math.zeros(length, length) as Matrix).toArray();
 
         for (let i = 0; i < length; i++) {
             for (let j = 0; j < length; j++) {

@@ -5,6 +5,12 @@ import {ISentenceData} from "./ISentenceAbstract";
 import RankAbstract from "./RankAbstract";
 import SentenceKeyword from "./SentenceKeyword";
 
+interface IRankTemp {
+    rank: number,
+    sentence: string,
+    data: string[]
+}
+
 export default class Rake extends RankAbstract {
     private static findAllCombinations(arr: string[]): string[][] {
         const combinations: string[][] = [];
@@ -16,6 +22,21 @@ export default class Rake extends RankAbstract {
         }
 
         return combinations;
+    }
+
+    private static calculatePercentage(rank: IRankTemp[]): IRank[] {
+        const result: IRank[] = [];
+        const ranks = rank.map((r) => r.rank);
+
+        const min: number = Math.min(...ranks);
+        const diff: number = Math.max(...ranks) - min;
+
+        for (let i = 0; i < rank.length; i++) {
+            const percentage: number = (ranks[i] - min) / diff;
+            result.push({rank: rank[i].rank, percentage, sentence: rank[i].sentence, data: rank[i].data});
+        }
+
+        return result;
     }
 
     private keywordScores: Map<string, number>;
@@ -34,7 +55,7 @@ export default class Rake extends RankAbstract {
     }
 
     private rake(): IRank[] {
-        const result: IRank[] = [];
+        const result: IRankTemp[] = [];
         const sentenceKeywords: ISentenceData[] = this.sa.getSentenceData();
 
         for (const s of sentenceKeywords) {
@@ -60,7 +81,7 @@ export default class Rake extends RankAbstract {
             result.push({rank: sentenceScore, sentence: s.sentence, data: s.data});
         }
 
-        return result;
+        return Rake.calculatePercentage(result);
     }
     
     private coOccurrenceGraph(): number[][] {

@@ -34,7 +34,7 @@ export default abstract class SentenceAbstract {
     protected findSentences(): string[] {
         const sentences: string[] = [];
         const ends: number[] = this.findSentenceEnds();
-        let prev = 0;
+        let prev: number = 0;
 
         for (const e of ends) {
             const sentence = this.source.substring(prev, e + 1).replace(/[:()@#"'\n“”]/g, "");
@@ -48,11 +48,11 @@ export default abstract class SentenceAbstract {
     }
 
     private findSentenceEnds(): number[] {
-        const indexes = [];
-        const reg = /[.!?;]/g;
-        let match = reg.exec(this.source);
+        const indexes: number[] = [];
+        const reg: any = /[.!?;]/g;
+        let match: any;
 
-        while (match !== null) {
+        while ((match = reg.exec(this.source)) !== null) {
             if (match[0] === ".") {
                 if (!this.checkPeriod(this.source.substring(match.index - 3))) {
                     continue;
@@ -65,14 +65,13 @@ export default abstract class SentenceAbstract {
             }
 
             indexes.push(match.index);
-            match = reg.exec(this.source);
         }
 
         return indexes;
     }
 
     private checkPeriod(text: string) {
-        const abbr = ["Mr", "Ms", "Mrs", "Dr"];
+        const abbr: string[] = ["Mr", "Ms", "Mrs", "Dr"];
 
         if (this.source[0] === " " && abbr.indexOf(text.substring(1, 3)) > -1) {
             return false;
