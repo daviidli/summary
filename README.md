@@ -1,10 +1,10 @@
-![logo](https://github.com/daviidli/summary/blob/master/public/summary.png)
-
 # summary
 
 _Client based extractive text summarization using TextRank and RAKE_
 
 ___[DEMO](https://daviidli.github.io/summary)___
+* TextRank and RAKE Summary: gives first n number of ranked sentences as summary in the order of the original text
+* TextRank and RAKE Full Ranks: gives rank of every sentence using selected method
 
 ### [TextRank](https://nlpforhackers.io/textrank-text-summarization/) 
 Uses Google's PageRank algorithm but instead of webpages, it ranks sentences.
