@@ -13,10 +13,10 @@ const muiTheme = createMuiTheme({
     palette: {
         type: "dark",
         primary: {
-            main: "#1e88e5"
+            main: "#3490FF"
         },
         secondary: {
-            main: "#f44336",
+            main: "#FF005E",
         },
     },
 });
@@ -24,10 +24,12 @@ const muiTheme = createMuiTheme({
 const styles = (theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
-        margin: "5%"
+        margin: "2%",
+        marginLeft: "4%",
+        marginRight: "4%"
     },
     inputs: {
-        marginBottom: theme.spacing.unit * 5
+        marginBottom: theme.spacing.unit * 3
     }
 });
 
@@ -66,6 +68,7 @@ class App extends React.Component<Props, State> {
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <div className={this.props.classes.root}>
+                        <img src={"summary.png"} alt={"summary"} style={{height: 100, width: "auto"}}/>
                         <div className={this.props.classes.inputs}>
                             <InputController sendText={this.handleText} className={this.props.classes.inputs}/>
                         </div>
