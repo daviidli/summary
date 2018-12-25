@@ -44,7 +44,7 @@ class InputController extends React.Component<Props, State> {
     public readonly handleSubmit = (e: any) => {
         e.preventDefault();
         if (this.optionsChild.current !== null) {
-            this.props.sendText(this.state.mainText, this.optionsChild.current.getSelections());
+            this.props.sendText(this.state.mainText, this.optionsChild.current.getSelections(), this.state.sumLength);
         }
     };
 

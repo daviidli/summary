@@ -37,7 +37,8 @@ export interface Props extends WithStyles<typeof styles> {
 
 interface State {
     mainText: string,
-    selected: ISelected
+    selected: ISelected,
+    sumLength: number
 }
 
 class App extends React.Component<Props, State> {
@@ -51,12 +52,13 @@ class App extends React.Component<Props, State> {
                 textRank: false,
                 rakeFull: false,
                 rake: false
-            }
+            },
+            sumLength: 5
         };
     }
 
-    public handleText = (text: string, selected: ISelected) => {
-        this.setState({mainText: text, selected});
+    public handleText = (text: string, selected: ISelected, sumLength: number) => {
+        this.setState({mainText: text, selected, sumLength});
     };
 
     public render() {
@@ -67,7 +69,7 @@ class App extends React.Component<Props, State> {
                         <div className={this.props.classes.inputs}>
                             <InputController sendText={this.handleText} className={this.props.classes.inputs}/>
                         </div>
-                        <SummaryController mainText={this.state.mainText} selected={this.state.selected}/>
+                        <SummaryController mainText={this.state.mainText} selected={this.state.selected} sumLength={this.state.sumLength}/>
                     </div>
                 </MuiThemeProvider>
             </div>
