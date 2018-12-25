@@ -4,38 +4,46 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import FormGroup from "@material-ui/core/FormGroup/FormGroup";
 import * as React from "react";
 
-interface State {
+export interface ISelected {
     textRankFull: boolean;
     textRank: boolean;
     rakeFull: boolean;
     rake: boolean;
 }
 
-export default class OptionsSelector extends React.Component<{}, State> {
+export interface Props {
+    isDisabled: any;
+}
+
+interface State {
+    selected: ISelected
+}
+
+export default class OptionsSelector extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            textRankFull: false,
-            textRank: false,
-            rakeFull: false,
-            rake: false
+            selected: {
+                textRankFull: false,
+                textRank: false,
+                rakeFull: false,
+                rake: false
+            }
         };
     }
 
     public readonly handleChange = (name: string) => (e: any) => {
-        const obj: any = {};
-        obj[name] = e.target.checked;
-        this.setState(obj);
+        this.setState((state: any) => {
+            const newState = state;
+            newState.selected[name] = !state.selected[name];
+            this.props.isDisabled(newState.selected.rake || newState.selected.textRank);
+            return newState;
+        });
     };
 
     public readonly getSelections = () => {
-        return {
-            textRankFull: this.state.textRankFull,
-            textRank: this.state.textRank,
-            rakeFull: this.state.rakeFull,
-            rake: this.state.rake
-        }
+        return this.state.selected;
     };
 
     public render() {
@@ -46,7 +54,7 @@ export default class OptionsSelector extends React.Component<{}, State> {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={this.state.textRank}
+                                    checked={this.state.selected.textRank}
                                     onChange={this.handleChange("textRank")}
                                     value="textRank"
                                     color="primary"
@@ -57,7 +65,7 @@ export default class OptionsSelector extends React.Component<{}, State> {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={this.state.rake}
+                                    checked={this.state.selected.rake}
                                     onChange={this.handleChange("rake")}
                                     value="rake"
                                     color="primary"
@@ -68,24 +76,24 @@ export default class OptionsSelector extends React.Component<{}, State> {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={this.state.textRankFull}
+                                    checked={this.state.selected.textRankFull}
                                     onChange={this.handleChange("textRankFull")}
                                     value="textRankFull"
                                     color="primary"
                                 />
                             }
-                            label="TextRank Full List"
+                            label="TextRank Full Ranks"
                         />
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={this.state.rakeFull}
+                                    checked={this.state.selected.rakeFull}
                                     onChange={this.handleChange("rakeFull")}
                                     value="rakeFull"
                                     color="primary"
                                 />
                             }
-                            label="RAKE Full List"
+                            label="RAKE Full Ranks"
                         />
                     </FormGroup>
                 </FormControl>

@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import * as React from 'react';
 import './App.css';
 import InputController from "./components/InputController";
+import {ISelected} from "./components/OptionsSelector";
 import SummaryController from "./components/SummaryController";
 
 const muiTheme = createMuiTheme({
@@ -23,6 +24,10 @@ const muiTheme = createMuiTheme({
 const styles = (theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
+        margin: "5%"
+    },
+    inputs: {
+        marginBottom: theme.spacing.unit * 5
     }
 });
 
@@ -31,25 +36,27 @@ export interface Props extends WithStyles<typeof styles> {
 }
 
 interface State {
-    mainText: string
+    mainText: string,
+    selected: ISelected
 }
 
 class App extends React.Component<Props, State> {
-    private summaryChild: any = React.createRef<SummaryController>();
-
     constructor(props: any) {
         super(props);
 
         this.state = {
-            mainText: ""
+            mainText: "",
+            selected: {
+                textRankFull: false,
+                textRank: false,
+                rakeFull: false,
+                rake: false
+            }
         };
     }
 
-    public handleText = (text: string) => {
-        if (text !== "" && this.summaryChild.current !== null) {
-            this.setState({mainText: text});
-            this.summaryChild.current.performSummary();
-        }
+    public handleText = (text: string, selected: ISelected) => {
+        this.setState({mainText: text, selected});
     };
 
     public render() {
@@ -57,10 +64,10 @@ class App extends React.Component<Props, State> {
             <div className="App">
                 <MuiThemeProvider theme={muiTheme}>
                     <div className={this.props.classes.root}>
-                        <div style={{margin: "5%", width: "auto"}}>
-                            <InputController sendText={this.handleText}/>
-                            <SummaryController ref={this.summaryChild} mainText={this.state.mainText}/>
+                        <div className={this.props.classes.inputs}>
+                            <InputController sendText={this.handleText} className={this.props.classes.inputs}/>
                         </div>
+                        <SummaryController mainText={this.state.mainText} selected={this.state.selected}/>
                     </div>
                 </MuiThemeProvider>
             </div>

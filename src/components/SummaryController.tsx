@@ -7,7 +7,7 @@ import Rake from "../controller/Rake";
 import SentenceKeyword from "../controller/SentenceKeyword";
 import SentenceText from "../controller/SentenceText";
 import TextRank from "../controller/TextRank";
-import OptionsSelector from "./OptionsSelector";
+import {ISelected} from "./OptionsSelector";
 import TextRankController from "./RankController";
 
 // const styles = (theme: Theme) => createStyles({
@@ -16,46 +16,19 @@ import TextRankController from "./RankController";
 //     }
 // });
 
-export interface ISelected {
-    textRankFull: boolean;
-    textRank: boolean;
-    rakeFull: boolean;
-    rake: boolean;
-}
-
 export interface Props {
     mainText: string;
-}
-
-interface State {
     selected: ISelected;
 }
 
-export default class SummaryController extends React.Component<Props, State> {
-    private optionsChild: any = React.createRef<OptionsSelector>();
-
+export default class SummaryController extends React.Component<Props, {}> {
     constructor(props: any) {
         super(props);
-
-        this.state = {
-            selected: {
-                textRankFull: false,
-                textRank: false,
-                rakeFull: false,
-                rake: false
-            }
-        };
     }
-
-    public readonly performSummary = () => {
-        const selection: any = this.optionsChild.current.getSelections();
-        this.setState({selected: selection});
-    };
 
     public render() {
         return (
             <div>
-                <OptionsSelector ref={this.optionsChild}/>
                 {this.showSummary()}
             </div>
         );
@@ -64,7 +37,7 @@ export default class SummaryController extends React.Component<Props, State> {
     private readonly showSummary = () => {
         const summary: any = [];
         
-        if (this.state.selected.textRank) {
+        if (this.props.selected.textRank) {
             let rank: IRank[] | string = [];
             try {
                 const st: SentenceText = new SentenceText(this.props.mainText);
@@ -76,7 +49,7 @@ export default class SummaryController extends React.Component<Props, State> {
             summary.push(<TextRankController title={"TextRank Summary"} text={this.props.mainText} rank={rank} summary={true}/>);
         }
         
-        if (this.state.selected.rake) {
+        if (this.props.selected.rake) {
             let rank: IRank[] | string = [];
             try {
                 const sk: SentenceKeyword = new SentenceKeyword(this.props.mainText);
@@ -88,7 +61,7 @@ export default class SummaryController extends React.Component<Props, State> {
             summary.push(<TextRankController title={"RAKE Summary"} text={this.props.mainText} rank={rank} summary={true}/>);
         }
         
-        if (this.state.selected.textRankFull) {
+        if (this.props.selected.textRankFull) {
             let rank: IRank[] | string = [];
             try {
                 const st: SentenceText = new SentenceText(this.props.mainText);
@@ -100,7 +73,7 @@ export default class SummaryController extends React.Component<Props, State> {
             summary.push(<TextRankController title={"TextRank"} text={this.props.mainText} rank={rank} summary={false}/>);
         }
         
-        if (this.state.selected.rakeFull) {
+        if (this.props.selected.rakeFull) {
             let rank: IRank[] | string = [];
             try {
                 const sk: SentenceKeyword = new SentenceKeyword(this.props.mainText);
@@ -115,5 +88,3 @@ export default class SummaryController extends React.Component<Props, State> {
         return summary;
     };
 }
-
-// export default withStyles(styles)(SummaryController);

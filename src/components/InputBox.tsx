@@ -7,30 +7,31 @@ import * as React from "react";
 const styles = (theme: Theme) => createStyles({
     textField: {
         margin: theme.spacing.unit * 0.5,
-        width: "99.5%",
+        width: 200,
     }
 });
 
 export interface Props extends WithStyles<typeof styles> {
+    disabled: boolean;
     name: string;
     title: string;
-    value: string;
+    value: number;
     placeholder: string;
+    inputType: string;
     handleChange: any;
 }
 
-function InputField(props: Props) {
+function InputBox(props: Props) {
     return (
         <div className="form-group">
             <TextField
                 className={props.classes.textField}
+                disabled={props.disabled}
                 id={props.name}
                 name={props.name}
                 label={props.title}
-                multiline={true}
-                rows="15"
+                type={props.inputType}
                 value={props.value}
-                variant="outlined"
                 onChange={props.handleChange}
                 placeholder={props.placeholder}
             />
@@ -38,4 +39,4 @@ function InputField(props: Props) {
     );
 }
 
-export default withStyles(styles)(InputField);
+export default withStyles(styles)(InputBox);
