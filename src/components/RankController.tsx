@@ -1,11 +1,11 @@
 import {Theme, WithStyles} from "@material-ui/core";
+import Card from "@material-ui/core/Card/Card";
+import CardContent from "@material-ui/core/CardContent/CardContent";
 import createStyles from "@material-ui/core/styles/createStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography/Typography";
 import * as React from "react";
 import {IRank} from "../controller/IRank";
-import Rake from "../controller/Rake";
-import SentenceKeyword from "../controller/SentenceKeyword";
 import CollapseCard from "./CollapseCard";
 import RankComponent from "./RankComponent";
 
@@ -19,7 +19,7 @@ const styles = (theme: Theme) => createStyles({
         flexGrow: 1,
     },
     TR: {
-        marginTop: theme.spacing.unit * 5,
+        marginTop: theme.spacing.unit,
     }
 });
 
@@ -31,13 +31,16 @@ interface IRankColour {
 
 export interface Props extends WithStyles<typeof styles> {
     text: string;
+    rank: IRank[] | string;
+    summary: boolean;
+    title: string;
 }
 
 interface State {
     ranking: [];
 }
 
-class TextRankController extends React.Component<Props, State> {
+class RankController extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
 
@@ -81,30 +84,24 @@ class TextRankController extends React.Component<Props, State> {
     };
 
     public actions = () => {
-        try {
-            const text: SentenceKeyword = new SentenceKeyword(this.props.text);
-            // const tr: TextRank = new TextRank(text);
-            // const rank: IRank[] = tr.getOriginalOrderSummary(5);
-
-            const rk: Rake = new Rake(text);
-            const rank: IRank[] = rk.getSortedRank();
-            
-            const rColour = this.getRankColour(rank);
+        if (typeof this.props.rank === "string") {
             return (
                 <div>
+                    <Typography variant="body1" style={{textAlign: "left"}}>
+                        {this.props.rank}
+                    </Typography>
+                </div>
+            );
+        } else {
+            const rColour = this.getRankColour(this.props.rank);
+            return (
+                <div>
+                    {this.summaryCard()}
                     {rColour.map((r: IRankColour) => {
                         return (
                             <RankComponent value={r.percentage} sentence={r.sentence} key={r.sentence} colour={r.colour}/>
                         );
                     })}
-                </div>
-            )
-        } catch (err) {
-            return (
-                <div>
-                    <Typography variant="body1" style={{textAlign: "left"}}>
-                        {err.message}
-                    </Typography>
                 </div>
             );
         }
@@ -114,13 +111,29 @@ class TextRankController extends React.Component<Props, State> {
         return (
             <div className={this.props.classes.TR}>
                 <CollapseCard
-                    heading={"TextRank"}
+                    heading={this.props.title}
                     actions={this.actions()}
                     margin={-20}
                 />
             </div>
         );
     }
+
+    private summaryCard = () => {
+        if (this.props.summary && typeof this.props.rank !== "string") {
+            return (
+                <Card style={{margin: 10}}>
+                    <CardContent style={{backgroundColor: "#1e88e5"}}>
+                        <Typography variant="body1" style={{textAlign: "left"}}>
+                            {this.props.rank.reduce((acc: string, v: IRank) => acc += " " + v.sentence, "")}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            );
+        } else {
+            return;
+        }
+    }
 }
 
-export default withStyles(styles)(TextRankController);
+export default withStyles(styles)(RankController);

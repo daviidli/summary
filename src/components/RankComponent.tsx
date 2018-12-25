@@ -10,7 +10,7 @@ import * as React from "react";
 
 const styles = (theme: Theme) => createStyles({
     card: {
-        margin: theme.spacing.unit,
+        margin: 10,
     },
     root: {
         flexGrow: 1,
