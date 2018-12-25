@@ -1,4 +1,4 @@
-![logo](https://github.com/daviidli/summary/tree/master/public/summary.png)
+![logo](https://github.com/daviidli/summary/blob/master/public/summary.png)
 
 # summary
 
