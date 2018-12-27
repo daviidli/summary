@@ -69,11 +69,27 @@ export default abstract class SentenceAbstract {
         let prev: number = 0;
 
         for (const e of ends) {
-            const sentence = this.source.substring(prev, e + 1).replace(/[:()@#"'\n“”]/g, "");
+            const sentence = this.source.substring(prev, e + 1).replace(/[:()"\n“”]/g, "");
             if (sentence !== "") {
                 sentences.push(sentence);
             }
-            prev = e + 2;
+
+            let next: number;
+            const space: number = this.source.indexOf(" ", e) + 1;
+            const newLine: number = this.source.indexOf("\n", e);
+
+
+            if (space < 0 && newLine < 0) {
+                next = e + 2;
+            } else if (space < 0){
+                next = newLine < 0 ? e + 2: newLine;
+            } else if (newLine < 0) {
+                next = space < 0 ? e + 2 : space;
+            } else {
+                next = Math.min(space, newLine);
+            }
+
+            prev = next;
         }
 
         return sentences;
@@ -86,13 +102,8 @@ export default abstract class SentenceAbstract {
 
         while ((match = reg.exec(this.source)) !== null) {
             if (match[0] === ".") {
-                if (!this.checkPeriod(this.source.substring(match.index - 3))) {
+                if (!this.checkPeriod(match.index)) {
                     continue;
-                }
-                if (match.index + 2 < this.source.length) {
-                    if (!(this.source[match.index + 1] === " " || this.source[match.index + 1] === "\n")) {
-                        continue;
-                    }
                 }
             }
 
@@ -102,17 +113,20 @@ export default abstract class SentenceAbstract {
         return indexes;
     }
 
-    private checkPeriod(text: string) {
+    private checkPeriod(period: number) {
         const abbr: string[] = ["Mr", "Ms", "Mrs", "Dr"];
 
-        if (this.source[0] === " " && abbr.indexOf(text.substring(1, 3)) > -1) {
+        // if the period is used for Mr, Ms, Dr
+        if (abbr.indexOf(this.source.substring(period - 2, period)) > -1) {
             return false;
         }
 
-        if (abbr.indexOf(text.substring(0, 3)) > -1) {
+        // if the period is used for Mrs
+        if (abbr.indexOf(this.source.substring(period - 3, period)) > -1) {
             return false;
         }
 
-        return !(text[3] === " " || text[3] === "\n");
+        // if the period is a decimal point for a number
+        return !(period + 1 <= this.source.length && /\d/.test(this.source[period - 1]) && /\d/.test(this.source[period + 1]));
     }
 }

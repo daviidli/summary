@@ -23,7 +23,7 @@ export default class SentenceText extends SentenceAbstract {
         const result = [];
 
         const stopwords = super.getStopWords();
-        const words = sentence.toLowerCase().replace(/[.,:]/g, "").split(" ");
+        const words = sentence.toLowerCase().replace(/[.,]/g, "").split(" ");
         for (const word of words) {
             if (stopwords.indexOf(word) < 0) {
                 result.push(word);
