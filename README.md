@@ -4,7 +4,7 @@
 
 _Client based extractive text summarization using TextRank and RAKE_
 
-___[DEMO](https://daviidli.github.io/summary)___
+___[daviidli.github.io/summary](https://daviidli.github.io/summary)___
 
 ### [TextRank](https://nlpforhackers.io/textrank-text-summarization/) 
 Uses Google's PageRank algorithm but instead of webpages, it ranks sentences.
