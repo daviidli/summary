@@ -19,6 +19,7 @@ export interface Props extends WithStyles<typeof styles> {
 }
 
 interface State {
+    url: string;
     mainText: string;
     sumLength: number;
     disabled: boolean;
@@ -31,6 +32,7 @@ class InputController extends React.Component<Props, State> {
         super(props);
 
         this.state = {
+            url: "",
             mainText: "",
             sumLength: 5,
             disabled: true
@@ -56,10 +58,38 @@ class InputController extends React.Component<Props, State> {
         this.setState({sumLength: e.target.value});
     };
 
+    public readonly loadFromWebsite = (text: string) => {
+        this.setState({
+            mainText: text
+        });
+    };
+
     public render() {
         return (
             <div>
                 <form className={this.props.classes.form}>
+                    <form className={this.props.classes.form}>
+                        <InputField
+                            name="mainText"
+                            title="Text to Summarize"
+                            value={this.state.mainText}
+                            placeholder=""
+                            handleChange={this.handleInput}
+                        />
+                        <OptionsSelector ref={this.optionsChild} isDisabled={this.updateDisabled}/>
+                        <InputBox
+                            inputType={"number"}
+                            disabled={this.state.disabled}
+                            name={"sumLength"}
+                            placeholder={"5"}
+                            value={this.state.sumLength}
+                            handleChange={this.handleSum}
+                            title={"Summary Sentence Length"}
+                        />
+                        <Button variant="contained" color="primary" onClick={this.handleSubmit} className={this.props.classes.button}>
+                            Summarize
+                        </Button>
+                    </form>
                     <InputField
                         name="mainText"
                         title="Text to Summarize"

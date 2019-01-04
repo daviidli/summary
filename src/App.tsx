@@ -44,6 +44,8 @@ interface State {
 }
 
 class App extends React.Component<Props, State> {
+    private summaryChild: any = React.createRef<SummaryController>();
+
     constructor(props: any) {
         super(props);
 
@@ -60,7 +62,11 @@ class App extends React.Component<Props, State> {
     }
 
     public handleText = (text: string, selected: ISelected, sumLength: number) => {
-        this.setState({mainText: text, selected, sumLength});
+        this.setState({mainText: text, selected, sumLength}, () => {
+            if (this.summaryChild.current !== null) {
+                this.summaryChild.current.showSummary();
+            }
+        });
     };
 
     public render() {
@@ -72,7 +78,7 @@ class App extends React.Component<Props, State> {
                         <div className={this.props.classes.inputs}>
                             <InputController sendText={this.handleText} className={this.props.classes.inputs}/>
                         </div>
-                        <SummaryController mainText={this.state.mainText} selected={this.state.selected} sumLength={this.state.sumLength}/>
+                        <SummaryController ref={this.summaryChild} mainText={this.state.mainText} selected={this.state.selected} sumLength={this.state.sumLength}/>
                     </div>
                 </MuiThemeProvider>
             </div>
