@@ -30,7 +30,6 @@ interface IRankColour {
 }
 
 export interface Props extends WithStyles<typeof styles> {
-    text: string;
     rank: IRank[] | string;
     summary: boolean;
     title: string;

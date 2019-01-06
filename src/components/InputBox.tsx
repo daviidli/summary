@@ -7,7 +7,7 @@ import * as React from "react";
 const styles = (theme: Theme) => createStyles({
     textField: {
         margin: theme.spacing.unit * 0.5,
-        width: 200,
+        width: 150,
     }
 });
 
