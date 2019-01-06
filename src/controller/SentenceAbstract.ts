@@ -8,7 +8,7 @@ export default abstract class SentenceAbstract {
 
     protected constructor(text: string) {
         if (text.length === 0) {
-            throw new Error("text length === 0");
+            throw new Error("no text to parse");
         }
 
         this.source = text;
