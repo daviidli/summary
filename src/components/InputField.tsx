@@ -7,7 +7,8 @@ import * as React from "react";
 const styles = (theme: Theme) => createStyles({
     textField: {
         margin: theme.spacing.unit * 0.5,
-        width: "99.5%",
+        // width: "99.5%",
+        width: "100%"
     }
 });
 
@@ -17,18 +18,19 @@ export interface Props extends WithStyles<typeof styles> {
     value: string;
     placeholder: string;
     handleChange: any;
+    className: any;
 }
 
 function InputField(props: Props) {
     return (
-        <div className="form-group">
+        <div className={props.className}>
             <TextField
                 className={props.classes.textField}
                 id={props.name}
                 name={props.name}
                 label={props.title}
                 multiline={true}
-                rows="15"
+                rows="12"
                 value={props.value}
                 variant="outlined"
                 onChange={props.handleChange}

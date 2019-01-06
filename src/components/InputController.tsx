@@ -1,18 +1,26 @@
 import {createStyles, Theme, withStyles, WithStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button/Button";
+import Grid from "@material-ui/core/Grid/Grid";
 import * as React from "react";
 import {loadURL} from "../controller/URL";
-import InputBox from "./InputBox";
 import InputField from "./InputField";
 import InputFieldShort from "./InputFieldShort";
 import OptionsSelector from "./OptionsSelector";
 
 const styles = (theme: Theme) => createStyles({
-    form: {
+    button: {
         marginTop: theme.spacing.unit * 3,
     },
-    button: {
-        marginTop: theme.spacing.unit,
+    grid: {
+        marginLeft: 1,
+        marginBottom: theme.spacing.unit,
+        marginTop: theme.spacing.unit * 3
+    },
+    buttonTwo: {
+        marginTop: theme.spacing.unit
+    },
+    text: {
+        marginBottom: theme.spacing.unit * 2
     }
 });
 
@@ -24,7 +32,6 @@ interface State {
     url: string;
     mainText: string;
     sumLength: number;
-    disabled: boolean;
 }
 
 class InputController extends React.Component<Props, State> {
@@ -36,8 +43,7 @@ class InputController extends React.Component<Props, State> {
         this.state = {
             url: "",
             mainText: "",
-            sumLength: 5,
-            disabled: true
+            sumLength: 5
         };
     }
 
@@ -52,16 +58,8 @@ class InputController extends React.Component<Props, State> {
     public readonly handleSubmit = (e: any) => {
         e.preventDefault();
         if (this.optionsChild.current !== null) {
-            this.props.sendText(this.state.mainText, this.optionsChild.current.getSelections(), this.state.sumLength);
+            this.props.sendText(this.state.mainText, this.optionsChild.current.getSelections(), this.optionsChild.current.getSumLength());
         }
-    };
-
-    public readonly updateDisabled = (disabled: boolean) => {
-        this.setState({disabled: !disabled});
-    };
-
-    public readonly handleSum = (e: any) => {
-        this.setState({sumLength: e.target.value});
     };
 
     public readonly loadFromWebsite = (e: any) => {
@@ -77,36 +75,34 @@ class InputController extends React.Component<Props, State> {
     public render() {
         return (
             <div>
-                <form className={this.props.classes.form}>
-                    <form className={this.props.classes.form}>
-                        <InputFieldShort
-                            name="mainText"
-                            title="Link to website"
-                            value={this.state.url}
-                            placeholder=""
-                            handleChange={this.handleUrlInput}
-                        />
-                        <Button variant="contained" color="primary" onClick={this.loadFromWebsite} className={this.props.classes.button}>
-                            Summarize
-                        </Button>
-                    </form>
+                <form>
+                    <Grid container={true} spacing={8} className={this.props.classes.grid}>
+                        <Grid item={true} xs={true} sm={true} md={true} lg={true} key={"website"}>
+                            <InputFieldShort
+                                name="website"
+                                title="Link to Website"
+                                value={this.state.url}
+                                placeholder=""
+                                handleChange={this.handleUrlInput}
+                            />
+                        </Grid>
+                        <Grid item={true} xs={12} sm={3} md={2} lg={2} key={"button"}>
+                            <Button variant="contained" color="primary" onClick={this.loadFromWebsite} className={this.props.classes.buttonTwo}>
+                                Parse Website
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </form>
+                <form>
                     <InputField
                         name="mainText"
                         title="Text to Summarize"
                         value={this.state.mainText}
                         placeholder=""
                         handleChange={this.handleInput}
+                        className={this.props.classes.text}
                      />
-                    <OptionsSelector ref={this.optionsChild} isDisabled={this.updateDisabled}/>
-                    <InputBox
-                        inputType={"number"}
-                        disabled={this.state.disabled}
-                        name={"sumLength"}
-                        placeholder={"5"}
-                        value={this.state.sumLength}
-                        handleChange={this.handleSum}
-                        title={"Summary Sentence Length"}
-                    />
+                    <OptionsSelector ref={this.optionsChild} />
                     <Button variant="contained" color="primary" onClick={this.handleSubmit} className={this.props.classes.button}>
                         Summarize
                     </Button>
