@@ -22,7 +22,7 @@ export function parseParagraphs(data: any): Promise<string> {
         let text: string = "";
 
         $(data).find("p").each((i: number, e: any) => {
-            text += $(e).text() + "\n";
+            text += $(e).text() + "\n\n";
         });
 
         if (text !== "") {

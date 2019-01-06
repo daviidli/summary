@@ -1,8 +1,10 @@
 import {createStyles, Theme, withStyles, WithStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button/Button";
 import * as React from "react";
+import {loadURL} from "../controller/URL";
 import InputBox from "./InputBox";
 import InputField from "./InputField";
+import InputFieldShort from "./InputFieldShort";
 import OptionsSelector from "./OptionsSelector";
 
 const styles = (theme: Theme) => createStyles({
@@ -43,6 +45,10 @@ class InputController extends React.Component<Props, State> {
         this.setState({mainText: e.target.value});
     };
 
+    public readonly handleUrlInput = (e: any) => {
+        this.setState({url: e.target.value});
+    };
+
     public readonly handleSubmit = (e: any) => {
         e.preventDefault();
         if (this.optionsChild.current !== null) {
@@ -58,9 +64,13 @@ class InputController extends React.Component<Props, State> {
         this.setState({sumLength: e.target.value});
     };
 
-    public readonly loadFromWebsite = (text: string) => {
-        this.setState({
-            mainText: text
+    public readonly loadFromWebsite = (e: any) => {
+        e.preventDefault();
+
+        loadURL(this.state.url).then((data) => {
+            this.setState({
+                mainText: data
+            });
         });
     };
 
@@ -69,24 +79,14 @@ class InputController extends React.Component<Props, State> {
             <div>
                 <form className={this.props.classes.form}>
                     <form className={this.props.classes.form}>
-                        <InputField
+                        <InputFieldShort
                             name="mainText"
-                            title="Text to Summarize"
-                            value={this.state.mainText}
+                            title="Link to website"
+                            value={this.state.url}
                             placeholder=""
-                            handleChange={this.handleInput}
+                            handleChange={this.handleUrlInput}
                         />
-                        <OptionsSelector ref={this.optionsChild} isDisabled={this.updateDisabled}/>
-                        <InputBox
-                            inputType={"number"}
-                            disabled={this.state.disabled}
-                            name={"sumLength"}
-                            placeholder={"5"}
-                            value={this.state.sumLength}
-                            handleChange={this.handleSum}
-                            title={"Summary Sentence Length"}
-                        />
-                        <Button variant="contained" color="primary" onClick={this.handleSubmit} className={this.props.classes.button}>
+                        <Button variant="contained" color="primary" onClick={this.loadFromWebsite} className={this.props.classes.button}>
                             Summarize
                         </Button>
                     </form>
