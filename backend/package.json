@@ -1,8 +1,8 @@
 {
-  "name": "summ",
+  "name": "summary-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "David Li <d.li.2247@gmail.com>",
+  "author": "David Li <david@dvdli.dev>",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node ./src/index.ts",
