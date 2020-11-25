@@ -1,0 +1,6 @@
+node_modules/
+build/
+src/scripts/__pycache__/
+src/scripts/data.txt
+src/cache
+.env
