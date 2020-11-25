@@ -1,4 +1,4 @@
-# summm
+# summary frontend
 
 ## Project setup
 ```
