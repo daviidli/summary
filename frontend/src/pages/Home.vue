@@ -1,5 +1,5 @@
 <template>
-	<div class="flex items-center justify-center">
+	<div class="flex items-center justify-center h-full">
 		<div class="flex flex-col items-center justify-center w-full">
 			<input
 				placeholder="URL to summarize"
@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import SummaryRequest from '../interfaces/SummaryRequest';
+import { Routes } from '../router';
 
 @Component
 export default class Home extends Vue {
@@ -61,12 +61,14 @@ export default class Home extends Vue {
 
 	summarize() {
 		console.log(this.url, this.textRank, this.rake);
-		const info: SummaryRequest = {
-			url: this.url,
-			textRank: this.textRank,
-			rake: this.rake,
-		};
-		this.$emit('summarize', info);
+		this.$router.push({
+			path: Routes.Result,
+			query: {
+				url: this.url,
+				textRank: this.textRank ? '1' : '0',
+				rake: this.rake ? '1' : '0',
+			},
+		});
 	}
 }
 </script>
