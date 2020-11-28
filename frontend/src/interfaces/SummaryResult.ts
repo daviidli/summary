@@ -11,6 +11,7 @@ export interface Rank {
 	rank: number;
 	keywords?: string[];
 	score?: number;
+	percentage?: number;
 }
 
 export interface TextRankResult {

@@ -1,5 +1,5 @@
 <template>
-	<div class="flex justify-center w-screen h-screen bg-white dark:bg-trueGray-900">
+	<div class="flex justify-center w-screen h-screen overflow-x-hidden bg-white dark:bg-trueGray-900">
 		<div class="flex flex-col w-full h-full max-w-full lg:max-w-6xl">
 			<Header />
 			<div class="flex-grow mt-2 mb-6">
