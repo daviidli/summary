@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import restify from 'restify';
+import corsMiddleware from 'restify-cors-middleware';
 import { generateResults } from './api/utils';
 import config from './config';
 import { IInputData } from './interfaces/IRanker';
@@ -7,6 +8,15 @@ import { ISummaryText, ISummaryURL } from './interfaces/IServer';
 
 async function startServer() {
 	const server = restify.createServer();
+
+	const cors = corsMiddleware({
+		origins: ['*'],
+		allowHeaders: [],
+		exposeHeaders: [],
+	});
+
+	server.pre(cors.preflight);
+	server.use(cors.actual);
 
 	server.use(restify.plugins.bodyParser());
 
