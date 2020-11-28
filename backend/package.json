@@ -17,6 +17,7 @@
     "mathjs": "^8.0.1",
     "md5": "^2.3.0",
     "restify": "^8.5.1",
+    "restify-cors-middleware": "^1.1.1",
     "typescript": "^4.0.3",
     "validator": "^13.1.17"
   },
@@ -29,6 +30,7 @@
     "@types/mocha": "^8.0.4",
     "@types/node": "^14.11.8",
     "@types/restify": "^8.4.2",
+    "@types/restify-cors-middleware": "^1.0.1",
     "@types/validator": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
