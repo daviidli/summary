@@ -8,7 +8,8 @@
     "dev": "ts-node ./src/index.ts",
     "test": "mocha -r ts-node/register tests/**/*.spec.ts tests/**/**/*.spec.ts",
     "test-pattern": "mocha -r ts-node/register",
-    "build": "tsc",
+    "build-dev": "tsc",
+    "build": "tsc -p tsconfig-build.json",
     "start": "yarn build && node ./build/index.js"
   },
   "dependencies": {
