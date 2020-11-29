@@ -5,11 +5,7 @@ module.exports = {
 	purge: ['./src/**/*.vue', './src/**/*.html'],
 	darkMode: 'class',
 	theme: {
-		extend: {
-			lineHeight: {
-				'leading-15': '3.5rem',
-			},
-		},
+		extend: {},
 		fontFamily: {
 			sans: ['Quicksand', 'sans-serif'],
 			serif: ['"Playfair Display"', 'serif'],
