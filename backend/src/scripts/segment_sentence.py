@@ -1,3 +1,5 @@
+import getopt
+import sys
 import pysbd
 import string
 
@@ -9,15 +11,16 @@ def clean_sentence(sentence):
     return sentence.strip(strip_chars).lower()
 
 
-def main():
-    data = open('src/scripts/data.txt', 'r')
-    try:
-        sentences = segmenter.segment(data.read())
-        cleaned_sentences = [clean_sentence(sentence) for sentence in sentences]
-        print(cleaned_sentences)
-    finally:
-        data.close()
+def main(argv):
+    opts, args = getopt.getopt(argv, '')
+
+    if len(args) == 0:
+        print('No arguments found', file=sys.stderr)
+
+    sentences = segmenter.segment(args[0][1:len(args) - 2])
+    cleaned_sentences = [clean_sentence(sentence) for sentence in sentences]
+    print(cleaned_sentences)
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

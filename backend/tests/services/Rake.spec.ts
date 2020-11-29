@@ -39,9 +39,8 @@ describe('Rake', function () {
 	it('should initialize with url input', async function () {
 		try {
 			const rake = new Rake();
-			// just a really short wiki article
 			const input: IInputData = {
-				input: 'https://en.wikipedia.org/wiki/Irving_Berlin_v._E.C._Publications,_Inc.',
+				input: 'https://google.com/',
 				isUrl: true,
 			};
 			await rake.initialize(input);

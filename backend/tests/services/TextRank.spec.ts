@@ -40,8 +40,7 @@ describe('TextRank', function () {
 		try {
 			const textRank = new TextRank();
 			const input: IInputData = {
-				// just a really short wiki article
-				input: 'https://en.wikipedia.org/wiki/Irving_Berlin_v._E.C._Publications,_Inc.',
+				input: 'https://google.com/',
 				isUrl: true,
 			};
 
