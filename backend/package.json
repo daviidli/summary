@@ -10,7 +10,7 @@
     "test-pattern": "mocha -r ts-node/register",
     "build-dev": "tsc",
     "build": "tsc -p tsconfig-build.json",
-    "start": "yarn build && node ./build/index.js"
+    "start": "yarn build && node ./build/src/index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
