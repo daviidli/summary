@@ -31,5 +31,9 @@ jobs:
         working-directory: ${{ env.dir }}
         
       - name: Deploy to gh-pages
-        run: yarn deploy
-        working-directory: ${{ env.dir }}
+        uses: JamesIves/github-pages-deploy-action@3.6.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: frontend/dist
+          CLEAN: true
