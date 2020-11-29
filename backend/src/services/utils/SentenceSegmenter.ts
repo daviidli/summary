@@ -22,7 +22,7 @@ export default async function SentenceSegmenter(text: string): Promise<string[]>
 
 	try {
 		await cacheText(text);
-		const sentences = await PythonRunner(getScriptPath('segment_sentence.py'));
+		const sentences = await PythonRunner(getScriptPath('segment_sentence.py'), `"${text}"`);
 		return Promise.resolve(json5.parse(sentences));
 	} catch (err) {
 		return Promise.reject(err);
