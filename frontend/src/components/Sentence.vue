@@ -48,7 +48,7 @@ export default class Sentence extends Vue {
 		};
 
 		return {
-			backgroundColor: `rgb(${[colour.r, colour.g, colour.b, 0.5].join(',')})`,
+			backgroundColor: `rgb(${[colour.r, colour.g, colour.b, 0.6].join(',')})`,
 		};
 	}
 }

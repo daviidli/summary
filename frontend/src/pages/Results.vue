@@ -1,7 +1,7 @@
 <template>
-	<div class="flex items-center justify-center h-full">
-		<Sentences v-if="results && results.textRank" :ranks="results.textRank.ranks" title="Text Rank"></Sentences>
-		<Sentences v-if="results && results.rake" :ranks="results.rake.ranks" title="Rake"></Sentences>
+	<div class="flex flex-wrap items-start justify-center">
+		<Sentences v-if="results && results.textRank" :ranks="results.textRank.ranks" title="Text Rank" />
+		<Sentences v-if="results && results.rake" :ranks="results.rake.ranks" title="Rake" />
 	</div>
 </template>
 
@@ -13,7 +13,7 @@ import {
 	SummaryResult, SummarySelection, TextRankInfo, RakeInfo,
 } from '../interfaces/SummaryResult';
 
-const serverUrl = 'http://localhost:8000/summary/url/';
+const serverUrl = 'http://localhost:4000/summary/url/';
 
 @Component({
 	components: {

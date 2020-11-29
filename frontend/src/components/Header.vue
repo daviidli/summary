@@ -5,10 +5,24 @@
 		</h1>
 		<div class="inline-block">
 			<a href="https://github.com/daviidli/summary" target="_blank">
-				<Button eventName="github" :icon="['fab', 'github']" message="Github"></Button>
+				<Button
+					eventName="github"
+					:icon="['fab', 'github']"
+					message="Github"
+				/>
 			</a>
-			<Button eventName="api" :icon="['fas', 'sitemap']" message="API" @api="handleApi"></Button>
-			<Button eventName="dark" :icon="['fas', 'adjust']" message="Toggle Dark Mode" @dark="handleDarkMode"></Button>
+			<Button
+				eventName="api"
+				:icon="['fas', 'sitemap']"
+				message="API"
+				@api="handleApi"
+			/>
+			<Button
+				eventName="dark"
+				:icon="['fas', 'adjust']"
+				message="Toggle Dark Mode"
+				@dark="handleDarkMode"
+			/>
 		</div>
 	</div>
 </template>
@@ -19,7 +33,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSitemap } from '@fortawesome/free-solid-svg-icons/faSitemap';
 import { faAdjust } from '@fortawesome/free-solid-svg-icons/faAdjust';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import Button from './Button.vue';
+import Button from '@/components/buttons/HeaderButton.vue';
 import { Routes } from '../router';
 
 library.add(faSitemap, faAdjust, faGithub);
