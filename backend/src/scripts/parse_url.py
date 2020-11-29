@@ -9,6 +9,7 @@ def clean_text(text):
 
 def main(argv):
     opts, args = getopt.getopt(argv, '')
+    print(args);
 
     if len(args) == 0:
         print('No URL found', file=sys.stderr)
