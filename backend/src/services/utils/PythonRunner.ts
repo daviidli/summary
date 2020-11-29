@@ -14,7 +14,6 @@ function spawnProcess(script: string, args: string[]) {
 
 function PythonRunner(script: string, ...args: string[]): Promise<string> {
 	return new Promise((resolve, reject) => {
-		console.log('script: ', script, args);
 		const process = spawnProcess(script, args);
 
 		process.stdout.on('data', (data) => {

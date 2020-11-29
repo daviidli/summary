@@ -17,7 +17,7 @@ def main(argv):
     if len(args) == 0:
         print('No arguments found', file=sys.stderr)
 
-    sentences = segmenter.segment(args[0])
+    sentences = segmenter.segment(args[0][1:len(args) - 2])
     cleaned_sentences = [clean_sentence(sentence) for sentence in sentences]
     print(cleaned_sentences)
 
