@@ -69,5 +69,8 @@
 	},
 	"exclude": [
 		"tests/"
+	],
+	"include": [
+		"src/scripts"
 	]
 }
