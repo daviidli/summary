@@ -13,7 +13,7 @@ import {
 	SummaryResult, SummarySelection, TextRankInfo, RakeInfo,
 } from '../interfaces/SummaryResult';
 
-const serverUrl = 'http://localhost:4000/summary/url/';
+const serverUrl = 'https://summsumm.herokuapp.com/summary/url/';
 
 @Component({
 	components: {
@@ -103,7 +103,7 @@ export default class Results extends Vue {
 	}
 
 	@Watch('$route')
-	async onChildChanged(val: any, oldVal: any) {
+	async onChildChanged() {
 		await this.queryServer();
 	}
 }
