@@ -30,10 +30,14 @@ jobs:
         run: yarn
         working-directory: ${{ env.dir }}
         
+      - name: Build
+        run: yarn build
+        working-directory: ${{ env.dir }}
+        
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           BRANCH: gh-pages
-          FOLDER: dist
+          FOLDER: frontend/dist
           CLEAN: true
