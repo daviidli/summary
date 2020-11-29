@@ -2,9 +2,7 @@
 
 _Extractive text summarization using TextRank and RAKE_
 
-__v1 demo__: [https://dvdli.dev/summary](https://dvdli.dev/summary)
-
-__v2 demo still a work in progress__
+__Demo__: [https://dvdli.dev/summary](https://dvdli.dev/summary)
 
 
 
