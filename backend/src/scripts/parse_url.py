@@ -8,13 +8,12 @@ def clean_text(text):
 
 
 def main(argv):
-    opts, args = getopt.getopt(argv, '')
-    print(args);
+    # opts, args = getopt.getopt(argv, '')
 
-    if len(args) == 0:
-        print('No URL found', file=sys.stderr)
+    # if len(args) == 0:
+    #     print('No URL found', file=sys.stderr)
 
-    article = Article(args[0])
+    article = Article("https://www.cnn.com/2020/11/29/politics/coronavirus-vaccine-distribution-congress-funding/index.html")
     article.download()
     article.parse()
 
