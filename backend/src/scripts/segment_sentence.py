@@ -15,14 +15,11 @@ def main(argv):
     opts, args = getopt.getopt(argv, '')
 
     if len(args) == 0:
-        print('No URL found', file=sys.stderr)
-    # data = open('src/scripts/data.txt', 'r')
-    # try:
-        sentences = segmenter.segment(args[0])
-        cleaned_sentences = [clean_sentence(sentence) for sentence in sentences]
-        print(cleaned_sentences)
-    # finally:
-    #     data.close()
+        print('No arguments found', file=sys.stderr)
+
+    sentences = segmenter.segment(args[0])
+    cleaned_sentences = [clean_sentence(sentence) for sentence in sentences]
+    print(cleaned_sentences)
 
 
 if __name__ == "__main__":
