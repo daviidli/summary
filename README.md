@@ -1,10 +1,104 @@
 # summary
 
-_Extractive text summarization using TextRank and RAKE_
+Extractive text summarization using TextRank and RAKE.
 
-__Demo__: [https://dvdli.dev/summary](https://dvdli.dev/summary)
+## [Demo](https://dvdli.dev/summary)
 
+## API
 
+_Hosted for demo purposes only. Please host your own server if you require consistent performance._
+
+### Selection types:
+```typescript
+enum TextRankSelections {
+	Text = 'text',
+	Sentences = 'sentences',
+	Ranks = 'ranks',
+}
+```
+
+```typescript
+enum RakeSelections {
+	Text = 'text',
+	Sentences = 'sentences',
+	Ranks = 'ranks',
+	Keywords = 'keywords',
+}
+```
+
+### Getting the summary for a URL:
+
+Endpoint: `https://summsumm.herokuapp.com/summary/url/`
+POST Request body:
+```typescript
+interface UrlRequest {
+	url: string;
+	selections: {
+		textRank?: TextRankSelections[];
+		rake?: RakeSelections[];
+	}
+}
+```
+- API will return the requested selections only
+
+### Getting the summary of inputted text:
+
+Endpoint: `https://summsumm.herokuapp.com/summary/text/`
+POST Request body:
+```typescript
+interface TextRequest {
+	text: string;
+	selections: {
+		textRank?: TextRankSelections[];
+		rake?: RakeSelections[];
+	}
+}
+```
+- API will return the requested selections only
+
+### Response
+```typescript
+interface Response {
+	textRank?: TextRankResponse;
+	rake?: RakeResponse;
+}
+```
+
+```typescript
+// response is based on selections made in request
+
+interface TextRankResponse {
+	text?: string;
+	sentences?: string[];
+	ranks?: Rank[];	// shown below
+}
+
+interface RakeResponse {
+	text?: string;
+	sentences?: string[];
+	ranks?: Rank[]; // shown below
+	keywords?: KeywordScore[]; // shown below
+}
+```
+
+```typescript
+interface Rank {
+	sentenceIndex: number;
+	sentence: string;
+	rank: number;
+	keywords?: string[];
+	score?: number;
+}
+
+interface KeywordScore {
+	keyword: string;
+	degree: number;
+	frequency: number;
+	degFreq: number;
+}
+```
+
+## Algorithms
 
 ### [TextRank](https://nlpforhackers.io/textrank-text-summarization/)
 Uses Google's PageRank algorithm but instead of webpages, it ranks sentences. Cosine similarity is used to compute the similarity of sentences.
