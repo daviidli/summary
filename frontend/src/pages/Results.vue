@@ -12,6 +12,7 @@ import Sentences from '@/components/Sentences.vue';
 import {
 	SummaryResult, SummarySelection, TextRankInfo, RakeInfo,
 } from '../interfaces/SummaryResult';
+import { Routes } from '../router';
 
 const serverUrl = 'https://summsumm.herokuapp.com/summary/url/';
 
@@ -83,18 +84,14 @@ export default class Results extends Vue {
 					selections,
 				});
 
-				const a = this.calculatePercentage(results.data);
-
-				console.log(JSON.parse(JSON.stringify(a)));
-
-				this.results = a;
+				this.results = this.calculatePercentage(results.data);
 			} else {
-				// todo: show error message
-				console.log('else');
+				alert('No summarization methods selected.');
+				this.$router.push(Routes.Home);
 			}
 		} catch (err) {
-			// todo: show error message
-			console.log('err', err);
+			alert(err);
+			this.$router.push(Routes.Home);
 		}
 	}
 
