@@ -40,7 +40,7 @@ describe('Rake', function () {
 		try {
 			const rake = new Rake();
 			const input: IInputData = {
-				input: 'https://google.com/',
+				input: 'https://summsumm.herokuapp.com/',
 				isUrl: true,
 			};
 			await rake.initialize(input);

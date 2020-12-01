@@ -40,7 +40,7 @@ describe('TextRank', function () {
 		try {
 			const textRank = new TextRank();
 			const input: IInputData = {
-				input: 'https://google.com/',
+				input: 'https://summsumm.herokuapp.com/',
 				isUrl: true,
 			};
 
