@@ -5,7 +5,8 @@ Vue.use(VueRouter);
 
 export enum Routes {
 	Home = '/',
-	Result = '/summary/'
+	Result = '/summary/',
+	Any = '/*/'
 }
 
 const routes: Array<RouteConfig> = [
@@ -18,6 +19,11 @@ const routes: Array<RouteConfig> = [
 		path: `${Routes.Result}`,
 		name: 'Result',
 		component: () => import('../pages/Results.vue'),
+	},
+	{
+		path: `${Routes.Any}`,
+		name: 'Any',
+		component: () => import('../pages/Any.vue'),
 	},
 ];
 
