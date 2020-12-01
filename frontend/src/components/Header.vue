@@ -12,12 +12,6 @@
 				/>
 			</a>
 			<Button
-				eventName="api"
-				:icon="['fas', 'sitemap']"
-				message="API"
-				@api="handleApi"
-			/>
-			<Button
 				eventName="dark"
 				:icon="['fas', 'adjust']"
 				message="Toggle Dark Mode"
@@ -30,13 +24,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSitemap } from '@fortawesome/free-solid-svg-icons/faSitemap';
 import { faAdjust } from '@fortawesome/free-solid-svg-icons/faAdjust';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import Button from '@/components/buttons/HeaderButton.vue';
 import { Routes } from '../router';
 
-library.add(faSitemap, faAdjust, faGithub);
+library.add(faAdjust, faGithub);
 
 @Component({
 	components: {
@@ -44,10 +37,6 @@ library.add(faSitemap, faAdjust, faGithub);
 	},
 })
 export default class Header extends Vue {
-	handleApi() {
-		this.$emit('api');
-	}
-
 	handleDarkMode() {
 		const html = document.querySelector('html');
 		if (html && html.classList.contains('dark')) {
