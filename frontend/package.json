@@ -16,7 +16,7 @@
     "autoprefixer": "^9",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
-    "postcss": "^7",
+    "postcss": "^8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
